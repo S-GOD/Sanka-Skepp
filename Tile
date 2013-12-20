@@ -1,0 +1,61 @@
+package  
+{
+	import flash.display.Bitmap;
+	import flash.display.Sprite;
+	/**
+	 * ...
+	 * @author Adam Sjödahl
+	 */
+	public class Vatten extends Sprite
+	{
+		[Embed(source = "Water1.png")]
+		private var WaterImage:Class;
+		
+		[Embed(source = "WaterHit.png")]
+		private var WaterHit:Class;
+		
+		[Embed(source = "WaterMiss.png")]
+		private var WaterMiss:Class;
+		
+		
+		public static const WATER:int = 1;
+		public static const WATERHIT:int = 2;
+		public static const WATERMISS:int = 3;
+		public var isShip:Boolean = false;
+		public var BattleShip:int = 3;
+		
+		public static const TILE_SIDE:int = 48;
+		private var typeOfTerrain:int = 0;
+		
+		public function Vatten() 
+		{
+			
+			this.graphics.beginBitmapFill(Bitmap(new WaterImage()).bitmapData);
+			this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
+			this.graphics.endFill();
+		}
+		
+		public function clicked():void 
+		{
+		
+			if (this.isShip == true) 
+			{
+				this.isShip = BattleShip;
+				this.graphics.clear();
+				this.graphics.beginBitmapFill(Bitmap(new WaterHit()).bitmapData);
+				this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
+				this.graphics.endFill();
+				
+			}
+			else 
+			{
+				this.graphics.clear();
+				this.graphics.beginBitmapFill(Bitmap(new WaterMiss()).bitmapData);
+				this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
+				this.graphics.endFill();
+			}
+		}
+		
+	}
+
+}
